@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package core;
 
-option go_package = ".";
+option go_package = "./core";
 
 // PaxosKV defines the RPC functions related to two-phase paxos.
 //
