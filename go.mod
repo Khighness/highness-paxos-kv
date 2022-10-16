@@ -5,6 +5,7 @@ go 1.16
 require (
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/natefinch/lumberjack v2.0.0+incompatible
+	github.com/stretchr/testify v1.8.0 // indirect
 	go.uber.org/zap v1.23.0
 	golang.org/x/net v0.0.0-20221014081412-f15817d10f9b // indirect
 	golang.org/x/sys v0.0.0-20221013171732-95e765b1cc43 // indirect

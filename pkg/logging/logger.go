@@ -15,8 +15,6 @@ import (
 // @Since  2022-09-08
 
 // init initializes zap.Logger then we can use zap.L() to get this logger.
-// If env(run) == local, then log will be printed to console and also wrote to file.
-// Otherwise, log will be only wrote to file.
 func init() {
 	var core zapcore.Core
 	fileCore := zapcore.NewCore(zapFileEncoder(), zapWriteSyncer(), zapLevelEnabler())
@@ -69,7 +67,7 @@ func zapEncodeCaller(caller zapcore.EntryCaller, enc zapcore.PrimitiveArrayEncod
 }
 
 func zapWriteSyncer() zapcore.WriteSyncer {
-	logDir := "./log"
+	logDir := "log/"
 	if serviceName := os.Getenv("SERVICE_NAME"); serviceName != "" {
 		logDir = "/data/log/" + serviceName
 	}
