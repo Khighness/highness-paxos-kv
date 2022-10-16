@@ -2,14 +2,21 @@ package core
 
 import (
 	"context"
+	"fmt"
+	"net"
 	"sync"
 
 	"go.uber.org/zap"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
+
+	_ "github.com/khighness/highness-paxos-kv/pkg/logging"
 )
 
 // @Author KHighness
 // @Update 2022-10-15
 
+// GE compares the ballot number with another BallotNum.
 func (a *BallotNum) GE(b *BallotNum) bool {
 	if a.N > b.N {
 		return true
@@ -95,4 +102,27 @@ func (s *KVServer) getVersionLocked(id *PaxosInstanceId) *Version {
 
 	v.mu.Lock()
 	return v
+}
+
+// ServeAcceptors starts a gRPC server for every acceptor.
+func ServeAcceptors(acceptorIds []int64) []*grpc.Server {
+	var servers []*grpc.Server
+
+	for _, aid := range acceptorIds {
+		addr := fmt.Sprintf(":%d", AcceptorBasePort+int(aid))
+
+		listener, err := net.Listen("tcp", addr)
+		if err != nil {
+			zap.S().Fatalf("listen: %s %v", addr, err)
+		}
+
+		server := grpc.NewServer()
+		RegisterPaxosKVServer(server, &KVServer{Storage: map[string]Versions{}})
+		reflection.Register(server)
+		zap.S().Infof("Acceptor-%d is serving on %s", aid, addr)
+		servers = append(servers, server)
+		go server.Serve(listener)
+	}
+
+	return servers
 }
