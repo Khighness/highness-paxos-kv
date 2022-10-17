@@ -25,7 +25,7 @@ const (
 )
 
 // BallotNum is the ballot number in paxos. It consists of a monotonically
-// incremental number ans a university unique ProposerId.
+// incremental number and a university unique ProposerId.
 type BallotNum struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
