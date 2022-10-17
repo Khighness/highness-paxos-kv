@@ -265,7 +265,7 @@ type Proposer struct {
 
 	// which paxos instance it runs on.
 	Id *PaxosInstanceId `protobuf:"bytes,1,opt,name=Id,proto3" json:"Id,omitempty"`
-	// the ballot umber of a Proposer.
+	// the ballot number of a Proposer.
 	Bal *BallotNum `protobuf:"bytes,2,opt,name=Bal,proto3" json:"Bal,omitempty"`
 	// the value of a Proposer has chosen.
 	Val *Value `protobuf:"bytes,3,opt,name=Val,proto3" json:"Val,omitempty"`

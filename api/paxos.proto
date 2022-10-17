@@ -56,7 +56,7 @@ message Acceptor {
 message Proposer {
     // which paxos instance it runs on.
     PaxosInstanceId Id = 1;
-    // the ballot umber of a Proposer.
+    // the ballot number of a Proposer.
     BallotNum Bal = 2;
     // the value of a Proposer has chosen.
     Value Val = 3;
