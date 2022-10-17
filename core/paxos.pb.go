@@ -188,7 +188,7 @@ func (x *PaxosInstanceId) GetVer() int64 {
 	return 0
 }
 
-// Acceptor is the state of an Acceptor ans also serves as the reply
+// Acceptor is the state of an Acceptor and also serves as the reply
 // of Prepare/Accept.
 type Acceptor struct {
 	state         protoimpl.MessageState

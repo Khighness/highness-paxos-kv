@@ -40,7 +40,7 @@ message PaxosInstanceId {
     int64  Ver = 2;
 }
 
-// Acceptor is the state of an Acceptor ans also serves as the reply
+// Acceptor is the state of an Acceptor and also serves as the reply
 // of Prepare/Accept.
 message Acceptor {
     // the last ballot number the instance knows of.
